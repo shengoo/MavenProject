@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 @Service
@@ -29,7 +30,8 @@ public class FileSystemStorageService implements StorageService {
 			if (file.isEmpty()) {
 				throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
 			}
-			Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+			String newFileName = UUID.randomUUID().toString() + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
+			Files.copy(file.getInputStream(), this.rootLocation.resolve(newFileName));
 		} catch (IOException e) {
 			throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
 		}
@@ -38,6 +40,9 @@ public class FileSystemStorageService implements StorageService {
 	@Override
 	public Stream<Path> loadAll() {
 		try {
+			if(!Files.exists(this.rootLocation)){
+				Files.createDirectory(this.rootLocation);
+			}
 			return Files.walk(this.rootLocation, 1).filter(path -> !path.equals(this.rootLocation))
 					.map(path -> this.rootLocation.relativize(path));
 		} catch (IOException e) {
