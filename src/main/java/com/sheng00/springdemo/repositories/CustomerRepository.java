@@ -43,4 +43,18 @@ public class CustomerRepository {
 		}
 		return customers;
 	}
+	
+	public void addOne(Customer customer){
+		try {
+			Class.forName(className);
+			Connection conn= DriverManager.getConnection(url,user,password);
+			Statement stmt = (Statement)conn.createStatement();   
+            String sql = "INSERT INTO Customer (name) VALUES (' " + customer.getName() + "')";
+            stmt.execute(sql);
+			conn.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
