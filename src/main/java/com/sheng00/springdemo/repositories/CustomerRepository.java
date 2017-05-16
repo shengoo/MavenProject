@@ -3,7 +3,6 @@ package com.sheng00.springdemo.repositories;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +29,6 @@ public class CustomerRepository {
 			Connection conn= DriverManager.getConnection(url,user,password);
 			Statement stmt = (Statement)conn.createStatement();   
             ResultSet rs = stmt.executeQuery("SELECT * from Customer");   
-            ResultSetMetaData rsmt = rs.getMetaData();
-            int count = rsmt.getColumnCount();
-  
             while (rs.next())   
             {   
 				UUID id = UUID.fromString(rs.getString("id"));
