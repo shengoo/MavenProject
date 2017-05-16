@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sheng00.springdemo.models.Article;
+//import com.sheng00.springdemo.repositories.ArticleRepository;
 import com.sheng00.springdemo.storage.StorageService;
 
 @Controller
@@ -31,6 +32,7 @@ import com.sheng00.springdemo.storage.StorageService;
 public class ArticleController {
 	
 	private final StorageService storageService;
+//	private final ArticleRepository articleRepository;
 	
 	private Article[] articles = new Article[10];
 	private static final String template = "Hello, %s!";
@@ -44,6 +46,7 @@ public class ArticleController {
 			articles[i] = a;
 		}
         this.storageService = storageService;
+//        this.articleRepository = articleRepository;
     }
 	
 	@RequestMapping("")

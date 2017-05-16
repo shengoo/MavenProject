@@ -1,14 +1,25 @@
 package com.sheng00.springdemo.models;
 
+import java.util.UUID;
+
+//import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
+//@Entity
 public class Article {
 //	private final long id;
 //    private final String content;
+	
+//	@Id
+//	@GeneratedValue
+	private UUID id;
     
     @NotNull
-    @Size(min=2, max=10)
+    @Size(min=2, max=20)
     private String title;
     
     @NotNull//(message="${validatedValue} can not be empty")
@@ -42,5 +53,13 @@ public class Article {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
 	}
 }
