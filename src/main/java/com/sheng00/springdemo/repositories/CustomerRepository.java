@@ -90,5 +90,34 @@ public class CustomerRepository {
 			}
 		}
 	}
+	
+	public boolean deleteOne(String id) {
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			Class.forName(className);
+			conn = DriverManager.getConnection(url, user, password);
+			stmt = (Statement) conn.createStatement();
+			String sql = "delete FROM Customer where id='" + id + "'";
+			int result = stmt.executeUpdate(sql);
+            return result != 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if (stmt != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+	}
 
 }
