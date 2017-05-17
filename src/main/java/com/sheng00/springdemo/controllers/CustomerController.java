@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sheng00.springdemo.models.Customer;
+import com.sheng00.springdemo.models.Product;
 import com.sheng00.springdemo.repositories.CustomerRepository;
+import com.sheng00.springdemo.repositories.ProductRepository;
 
 
 @Controller
@@ -25,9 +28,11 @@ import com.sheng00.springdemo.repositories.CustomerRepository;
 public class CustomerController {
 	
 	private final CustomerRepository customerRepository;
+	private final ProductRepository productRepository;
 	
-	public CustomerController(CustomerRepository customerRepository){
+	public CustomerController(CustomerRepository customerRepository,ProductRepository productRepository){
 		this.customerRepository = customerRepository;
+		this.productRepository = productRepository;
 	}
 	
 	@RequestMapping("")
@@ -64,6 +69,9 @@ public class CustomerController {
 	public String detail(@PathVariable String id,Model model){
 		Customer customer = customerRepository.getOne(id);
 		model.addAttribute("customer",customer);
+		List<Product> allProducts = productRepository.getAll();
+//		List<Product> hasProduct = 
+		model.addAttribute("availableProducts", allProducts);
 		return "customer/detail";
 	}
 	
@@ -75,6 +83,11 @@ public class CustomerController {
 		}else{
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
+	}
+	
+	@PostMapping("addproduct")
+	public String addProduct(@RequestParam String cid){
+		return "redirect:" + cid;
 	}
 	
 	
