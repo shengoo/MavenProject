@@ -2,13 +2,22 @@ package com.sheng00.springdemo.models;
 
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Product {
+	public Product(){
+		
+	}
 	public Product(UUID id,String name){
 		this.id = id;
 		this.name = name;
 	}
 	
 	private UUID id;
+	
+    @NotNull
+    @Size(min=2, max=20)
 	private String name;
 	public UUID getId() {
 		return id;
