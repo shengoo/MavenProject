@@ -58,7 +58,9 @@ public class CustomerController {
 	}
 	
 	@GetMapping("{id}")
-	public String detail(@PathVariable String id){
+	public String detail(@PathVariable String id,Model model){
+		Customer customer = customerRepository.getOne(id);
+		model.addAttribute("customer",customer);
 		return "customer/detail";
 	}
 
