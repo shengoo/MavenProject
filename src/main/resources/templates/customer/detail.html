@@ -67,16 +67,16 @@
 							 	  method="POST"
 								  th:action="@{/customer/deleteProduct}">
 			 
-							<input type="hidden" th:value="${customer.id}" name="cid" />
-							<input type="hidden" th:value="${product.id}" name="pid" />
-							<button type="submit" class="btn btn-primary">Delete</button>
+								<input type="hidden" th:value="${customer.id}" name="cid" />
+								<input type="hidden" th:value="${product.id}" name="pid" />
+								<button type="submit" class="btn btn-primary">Delete</button>
 							</form>
 						</td>
 					</tr>
 				</tbody>
 			</tbody>
 		</table>
-			
+
 		<div th:if="${availableProducts.size()}">
 			<div class="page-header">
 			  <h1 th:text="'Add products for ' + ${customer.name}">Add products for customer</h1>
