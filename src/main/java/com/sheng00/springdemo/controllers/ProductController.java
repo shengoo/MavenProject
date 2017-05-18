@@ -56,7 +56,7 @@ public class ProductController {
 		}
 		redirectAttributes.addFlashAttribute("message",
                 "Add Product Success.");
-		return "redirect:";
+		return "redirect:/product";
 	}
 	
 	@GetMapping("{id}")

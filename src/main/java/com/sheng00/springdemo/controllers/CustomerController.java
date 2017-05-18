@@ -63,7 +63,7 @@ public class CustomerController {
 		}
 		redirectAttributes.addFlashAttribute("message",
                 "Add Customer Success.");
-		return "redirect:";
+		return "redirect:/customer";
 	}
 	
 	@GetMapping("{id}")
