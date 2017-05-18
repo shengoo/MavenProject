@@ -1,28 +1,4 @@
-<!-- <!DOCTYPE html> -->
-<!-- <html> -->
-<!-- <head> -->
-<!-- <meta charset="ISO-8859-1" /> -->
-<!-- <title>Insert title here</title> -->
-<!-- </head> -->
-<!-- <body> -->
-
-<!-- </body> -->
-<!-- </html> -->
-
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<!--     <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/> -->
-</head>
-<body>
-    <!--/*  Multiple fragments may be defined in one file */-->
-    <div th:fragment="footer">
-        &copy; <span>2017</span>
-        <span>My Awesome App</span>
-    </div>
-    <div th:fragment="footer-admin">
-        &copy; <span>2017</span>
-        <span>My Awesome App </span><span></span>
-    </div>
-</body>
-</html>
+<div th:fragment="footer" th:align="center">
+    &copy; <span>2017</span>
+    <span>My Awesome App</span>
+</div>
