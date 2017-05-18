@@ -2,6 +2,7 @@ package com.sheng00.springdemo.controllers;
 
 import java.util.List;
 
+import javax.security.auth.x500.X500Principal;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -61,7 +62,7 @@ public class CustomerController {
             return "customer/add";
 		}
 		redirectAttributes.addFlashAttribute("message",
-                "Success.");
+                "Add Customer Success.");
 		return "redirect:";
 	}
 	
@@ -70,7 +71,12 @@ public class CustomerController {
 		Customer customer = customerRepository.getOne(id);
 		model.addAttribute("customer",customer);
 		List<Product> allProducts = productRepository.getAll();
-//		List<Product> hasProduct = 
+		List<Product> hasProducts = productRepository.getByCustomer(id);
+		model.addAttribute("products", hasProducts);
+//		List<Product> availableProducts = 
+				allProducts.removeAll(hasProducts);
+				allProducts.removeIf((p)-> hasProducts.contains(p));
+				System.out.println(allProducts.size());
 		model.addAttribute("availableProducts", allProducts);
 		return "customer/detail";
 	}
@@ -86,10 +92,32 @@ public class CustomerController {
 	}
 	
 	@PostMapping("addproduct")
-	public String addProduct(@RequestParam String cid){
+	public String addProduct(@RequestParam String cid,@RequestParam(required=true) String pid,
+			RedirectAttributes redirectAttributes){
+		boolean result = customerRepository.addProduct(cid, pid);
+		if(result){
+			redirectAttributes.addFlashAttribute("message",
+	                "Add Product Success.");
+		}else {
+			redirectAttributes.addFlashAttribute("error",
+	                "Add Product Failed.");
+		}
 		return "redirect:" + cid;
 	}
 	
+	@PostMapping("deleteProduct")
+	public String deleteProduct(@RequestParam String cid,@RequestParam String pid,
+			RedirectAttributes redirectAttributes){
+		boolean result = customerRepository.deleteProduct(cid, pid);
+		if(result){
+			redirectAttributes.addFlashAttribute("message",
+	                "Delete Product Success.");
+		}else {
+			redirectAttributes.addFlashAttribute("error",
+	                "Delete Product Failed.");
+		}
+		return "redirect:" + cid;
+	}
 	
 
 }

@@ -42,13 +42,19 @@ public class ProductRepository {
 		return customers;
 	}
 	
-	public List<Product> getByCustomer(String cid){
+
+	public List<Product> getByCustomer(String cid) {
 		List<Product> customers = new ArrayList<Product>();
+		Connection conn = null;
+		Statement stmt = null;
 		try {
 			Class.forName(className);
-			Connection conn = DriverManager.getConnection(url, user, password);
-			Statement stmt = (Statement) conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * from Product");
+			conn = DriverManager.getConnection(url, user, password);
+			stmt = (Statement) conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from Product "
+					+ "where id in "
+					+ "(select pid from CustomerProduct "
+					+ "where cid = '" + cid + "')");
 			while (rs.next()) {
 				UUID id = UUID.fromString(rs.getString("id"));
 				String name = rs.getString("name");
@@ -59,6 +65,19 @@ public class ProductRepository {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				if (stmt != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
 		}
 		return customers;
 	}
@@ -119,9 +138,12 @@ public class ProductRepository {
 			Class.forName(className);
 			conn = DriverManager.getConnection(url, user, password);
 			stmt = (Statement) conn.createStatement();
-			String sql = "delete FROM Product where id='" + id + "'";
-			int result = stmt.executeUpdate(sql);
-            return result != 0;
+			String sql1 = "delete from CustomerProduct where pid='" + id + "'";
+			String sql2 = "delete FROM Product where id='" + id + "'";
+			stmt.addBatch(sql1);
+			stmt.addBatch(sql2);
+			int[] result = stmt.executeBatch();
+            return result[1] != 0;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

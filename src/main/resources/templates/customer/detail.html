@@ -38,8 +38,8 @@
 
 
 	<div class="container">
-		<div class="alert alert-success" role="alert" th:if="${message}" th:text="${message}">
-		</div>
+		<div class="alert alert-success" role="alert" th:if="${message}" th:text="${message}"></div>
+		<div class="alert alert-danger" role="alert" th:if="${error}" th:text="${error}"></div>
 		<ol class="breadcrumb">
 			<li><a th:href="@{/}">Home</a></li>
 			<li><a th:href="@{/customer}">Customers</a></li>
@@ -50,30 +50,52 @@
 		</div>
 		<table class="table table-striped table-bordered table-hover">
 			<tbody>
-				<tr th:each="customer: ${customers}">
-					<td th:text="${customer.id}">Oranges</td>
-					<td><a th:href='@{/customer/} + ${customer.id}' th:text="${customer.name}"></a></td>
-				</tr>
+				<thead> 
+					<tr> 
+						<th>#</th> 
+						<th>Name                     </th> 
+						<th>Operation</th> 
+					</tr> 
+				</thead>
+				<tbody>
+					<tr th:each="product,rowStat: ${products}">
+						<td th:text="${rowStat.index}">Oranges</td>
+						<td><a th:href='@{/product/} + ${product.id}' th:text="${product.name}"></a></td>
+						<td>
+<!-- 							<a data-op="delete" href="javascript:void(0)" th:attr="data-id=${product.id},data-name=${product.name}">Delete</a> -->
+							<form class="form-inline"
+							 	  method="POST"
+								  th:action="@{/customer/deleteProduct}">
+			 
+							<input type="hidden" th:value="${customer.id}" name="cid" />
+							<input type="hidden" th:value="${product.id}" name="pid" />
+							<button type="submit" class="btn btn-primary">Delete</button>
+							</form>
+						</td>
+					</tr>
+				</tbody>
 			</tbody>
 		</table>
 			
-		
-		<div class="page-header">
-		  <h1 th:text="'Add products for ' + ${customer.name}">Add products for customer</h1>
+		<div th:if="${availableProducts.size()}">
+			<div class="page-header">
+			  <h1 th:text="'Add products for ' + ${customer.name}">Add products for customer</h1>
+			</div>
+			<form id="addProdForm"
+				  class="form-inline well"
+			 	  method="POST"
+				  th:action="@{/customer/addproduct}">
+				<input type="hidden" th:value="${customer.id}" name="cid" />
+				<div class="form-group">
+				    <div class="input-group">
+				    	<select name="pid" class="form-control" form="addProdForm">
+							<option th:each="product: ${availableProducts}" th:text="${product.name}" th:value="${product.id}">${product.name}</option>
+						</select>
+				    </div>
+	  			</div>
+	  			<button type="submit" class="btn btn-primary">Add product</button>
+			</form>
 		</div>
-		<form class="form-inline well"
-		 	  method="POST"
-			  th:action="@{/customer/addproduct}">
-			<input type="hidden" th:value="${customer.id}" name="cid" />
-			<div class="form-group">
-			    <div class="input-group">
-			    	<select class="form-control">
-						<option th:each="product: ${availableProducts}" th:text="${product.name}" th:value="${product.id}">${product.name}</option>
-					</select>
-			    </div>
-  			</div>
-  			<button type="submit" class="btn btn-primary">Add product</button>
-		</form>
 	</div>
 
 

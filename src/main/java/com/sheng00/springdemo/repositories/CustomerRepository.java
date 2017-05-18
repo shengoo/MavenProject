@@ -12,6 +12,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.sheng00.springdemo.models.Customer;
+import com.sheng00.springdemo.models.Product;
 
 @Service
 public class CustomerRepository {
@@ -98,7 +99,40 @@ public class CustomerRepository {
 			Class.forName(className);
 			conn = DriverManager.getConnection(url, user, password);
 			stmt = (Statement) conn.createStatement();
-			String sql = "delete FROM Customer where id='" + id + "'";
+			String sql1 = "delete from CustomerProduct where cid='" + id + "'";
+			String sql2 = "delete FROM Customer where id='" + id + "'";
+			
+			stmt.addBatch(sql1);
+			stmt.addBatch(sql2);
+			int[] result = stmt.executeBatch();
+            return result[1] != 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if (stmt != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+	}
+	
+	public boolean addProduct(String cid,String pid){
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			Class.forName(className);
+			conn = DriverManager.getConnection(url, user, password);
+			stmt = (Statement) conn.createStatement();
+			String sql = "INSERT INTO CustomerProduct(cid,pid) VALUES ('" + cid + "','" + pid + "')";
 			int result = stmt.executeUpdate(sql);
             return result != 0;
 		} catch (Exception e) {
@@ -119,5 +153,35 @@ public class CustomerRepository {
 			}
 		}
 	}
+	
+	public boolean deleteProduct(String cid, String pid){
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			Class.forName(className);
+			conn = DriverManager.getConnection(url, user, password);
+			stmt = (Statement) conn.createStatement();
+			String sql = "delete from CustomerProduct where cid='" + cid + "' and pid = '" + pid + "'";
+			int result = stmt.executeUpdate(sql);
+            return result != 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if (stmt != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+	}
+	
 
 }

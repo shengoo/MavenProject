@@ -55,7 +55,7 @@ public class ProductController {
             return "product/add";
 		}
 		redirectAttributes.addFlashAttribute("message",
-                "Success.");
+                "Add Product Success.");
 		return "redirect:";
 	}
 	
