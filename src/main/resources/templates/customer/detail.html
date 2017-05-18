@@ -12,8 +12,8 @@
 
 
 	<div class="container">
-		<div class="alert alert-success" role="alert" th:if="${message}" th:text="${message}"></div>
-		<div class="alert alert-danger" role="alert" th:if="${error}" th:text="${error}"></div>
+		<div th:replace="fragments/alert :: alert (type='success', message=${message})"></div>
+		<div th:replace="fragments/alert :: alert (type='danger', message=${error})"></div>
 		<ol class="breadcrumb">
 			<li><a th:href="@{/}">Home</a></li>
 			<li><a th:href="@{/customer}">Customers</a></li>

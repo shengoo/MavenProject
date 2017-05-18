@@ -11,9 +11,6 @@
 	<header th:replace="fragments/header :: header(1)"></header>
 
 	<div class="container">
-		<div class="alert alert-success" role="alert" th:errors="${customer}">
-		Error
-		</div>
 		<ol class="breadcrumb">
 			<li><a th:href="@{/}">Home</a></li>
 			<li><a th:href="@{/customer}">Customers</a></li>
