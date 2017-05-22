@@ -1,0 +1,3 @@
+[submodule "src/main/webapp/webuibs"]
+	path = src/main/webapp/webuibs
+	url = git@github.com:shengoo/webuibs.git
