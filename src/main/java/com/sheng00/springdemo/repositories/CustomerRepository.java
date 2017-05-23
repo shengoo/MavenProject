@@ -12,7 +12,6 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.sheng00.springdemo.models.Customer;
-import com.sheng00.springdemo.models.Product;
 
 @Service
 public class CustomerRepository {

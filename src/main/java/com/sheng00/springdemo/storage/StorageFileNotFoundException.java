@@ -2,7 +2,12 @@ package com.sheng00.springdemo.storage;
 
 public class StorageFileNotFoundException extends StorageException {
 
-    public StorageFileNotFoundException(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8838514520623453397L;
+
+	public StorageFileNotFoundException(String message) {
         super(message);
     }
 

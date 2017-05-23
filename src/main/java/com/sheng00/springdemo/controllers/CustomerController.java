@@ -2,7 +2,6 @@ package com.sheng00.springdemo.controllers;
 
 import java.util.List;
 
-import javax.security.auth.x500.X500Principal;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;

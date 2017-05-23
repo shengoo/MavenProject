@@ -1,48 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Customers</title>
-	<meta th:replace="fragments/css :: head"></meta>
+    <title>Customers</title>
+    <meta th:replace="fragments/css :: head"></meta>
 </head>
 <body>
-	<header th:replace="fragments/header :: header(1)"></header>
+<div class="app-container">
+    <header th:replace="fragments/header :: header(1)"></header>
 
 
-	<div class="container">
-		<div th:replace="fragments/alert :: alert (type='success', message=${message})">Error: Error</div>
-		<ol class="breadcrumb">
-			<li><a th:href="@{/}">Home</a></li>
-			<li class="active">Customers</li>
-		</ol>
-		<div class="page-header">
-		  <h1>All Customers</h1>
-		</div>
-		<a th:href="@{/customer/add}" class="btn btn-primary btn-lg"
-			role="button">Add new</a>
-		<table id="customerTable" class="basic-table links-alt-color">
-			<tbody>
-				<thead> 
-					<tr> 
-						<th>#</th> 
-						<th>Name                     </th> 
-						<th>Operation</th> 
-					</tr> 
-				</thead>
-				<tbody>
-					<tr th:each="customer,rowStat: ${customers}">
-						<td th:text="${rowStat.index}">Oranges</td>
-						<td><a th:href='@{/customer/} + ${customer.id}' th:text="${customer.name}"></a></td>
-						<td><a data-op="delete" href="javascript:void(0)" th:attr="data-id=${customer.id},data-name=${customer.name}">Delete</a></td>
-					</tr>
-				</tbody>
-			</tbody>
-		</table>
-	</div>
+    <main class="container">
+        <div th:replace="fragments/alert :: alert (type='success', message=${message})">Error: Error</div>
+        <ol class="breadcrumb">
+            <li><a th:href="@{/}">Home</a></li>
+            <li class="active">Customers</li>
+        </ol>
+        <div class="page-header">
+            <h1>All Customers</h1>
+        </div>
+        <a th:href="@{/customer/add}" class="btn btn-primary btn-lg"
+           role="button">Add new</a>
+        <table id="customerTable" class="basic-table links-alt-color">
+            <tbody>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer,rowStat: ${customers}">
+                <td th:text="${rowStat.index}">Oranges</td>
+                <td><a th:href='@{/customer/} + ${customer.id}' th:text="${customer.name}"></a></td>
+                <td><a data-op="delete" href="javascript:void(0)"
+                       th:attr="data-id=${customer.id},data-name=${customer.name}">Delete</a></td>
+            </tr>
+            </tbody>
+            </tbody>
+        </table>
+    </main>
 
-	<div th:replace="fragments/footer :: footer"></div>
-
-	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
-	<script th:src="@{/js/bootstrap.js}"></script>
-	<script th:src="@{/js/app.js}"></script>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/app.js}"></script>
 </body>
 </html>
