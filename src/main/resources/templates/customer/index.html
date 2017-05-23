@@ -11,34 +11,38 @@
 
     <main class="container">
         <div th:replace="fragments/alert :: alert (type='success', message=${message})">Error: Error</div>
+        <div class="content-block">
+		    <header class="level1">
+		        <h6>All Customers</h6>
+		    </header>
+		    <div class="content">
+		        <a th:href="@{/customer/add}" class="btn btn-primary btn-lg"
+		           role="button">Add new</a>
+		        <table id="customerTable" class="basic-table links-alt-color">
+		            <tbody>
+		            <thead>
+		            <tr>
+		                <th>#</th>
+		                <th>Name</th>
+		                <th>Operation</th>
+		            </tr>
+		            </thead>
+		            <tbody>
+		            <tr th:each="customer,rowStat: ${customers}">
+		                <td th:text="${rowStat.index}">Oranges</td>
+		                <td><a th:href='@{/customer/} + ${customer.id}' th:text="${customer.name}"></a></td>
+		                <td><a data-op="delete" href="javascript:void(0)"
+		                       th:attr="data-id=${customer.id},data-name=${customer.name}">Delete</a></td>
+		            </tr>
+		            </tbody>
+		            </tbody>
+		        </table>
+		    </div>
+		</div>
         <ol class="breadcrumb">
             <li><a th:href="@{/}">Home</a></li>
             <li class="active">Customers</li>
         </ol>
-        <div class="page-header">
-            <h1>All Customers</h1>
-        </div>
-        <a th:href="@{/customer/add}" class="btn btn-primary btn-lg"
-           role="button">Add new</a>
-        <table id="customerTable" class="basic-table links-alt-color">
-            <tbody>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Operation</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="customer,rowStat: ${customers}">
-                <td th:text="${rowStat.index}">Oranges</td>
-                <td><a th:href='@{/customer/} + ${customer.id}' th:text="${customer.name}"></a></td>
-                <td><a data-op="delete" href="javascript:void(0)"
-                       th:attr="data-id=${customer.id},data-name=${customer.name}">Delete</a></td>
-            </tr>
-            </tbody>
-            </tbody>
-        </table>
     </main>
 
     <div th:replace="fragments/footer :: footer"></div>
