@@ -10,15 +10,7 @@
 
 
     <div class="main">
-        <div th:replace="fragments/alert :: alert (type='success', message=${message})">Error: Error</div>
-        <div role="alert" class="alert alert-dismissable alert-success">
-		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <span>font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;</span>
-		</div>
-        <div role="alert" class="alert alert-dismissable alert-error">
-		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <span>alert-error</span>
-		</div>
+        <div th:replace="fragments/alert :: alert (type='success', message=${message})">message</div>
         <div class="content-block">
 		    <header class="level1">
 		        <h6>All Customers</h6>
