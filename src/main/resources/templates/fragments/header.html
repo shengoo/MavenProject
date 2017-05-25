@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-	<header th:fragment="header(activeIndex)">
+	<header class="navbar" th:fragment="header(activeIndex)">
 		<div class="button-split">
 			<a th:href="@{/customer}">
 				<button th:classappend="${activeIndex==1}? selected">Customers</button>

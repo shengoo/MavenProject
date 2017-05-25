@@ -9,15 +9,26 @@
     <header th:replace="fragments/header :: header(1)"></header>
 
 
-    <main class="container">
+    <div class="main">
         <div th:replace="fragments/alert :: alert (type='success', message=${message})">Error: Error</div>
+        <div role="alert" class="alert alert-dismissable alert-success">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <span>font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;font-weight: bold;</span>
+		</div>
+        <div role="alert" class="alert alert-dismissable alert-error">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <span>alert-error</span>
+		</div>
         <div class="content-block">
 		    <header class="level1">
 		        <h6>All Customers</h6>
+		        <div class="header-actions-right">
+		        	<a th:href="@{/customer/add}">
+		        		<button>Add new</button>
+		        	</a>
+		        </div>
 		    </header>
 		    <div class="content">
-		        <a th:href="@{/customer/add}" class="btn btn-primary btn-lg"
-		           role="button">Add new</a>
 		        <table id="customerTable" class="basic-table links-alt-color">
 		            <tbody>
 		            <thead>
@@ -39,13 +50,8 @@
 		        </table>
 		    </div>
 		</div>
-        <ol class="breadcrumb">
-            <li><a th:href="@{/}">Home</a></li>
-            <li class="active">Customers</li>
-        </ol>
-    </main>
+    </div>
 
-    <div th:replace="fragments/footer :: footer"></div>
 </div>
 <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 <script th:src="@{/js/bootstrap.js}"></script>
