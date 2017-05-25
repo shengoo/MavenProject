@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sheng00.springdemo.models.Customer;
 import com.sheng00.springdemo.models.Product;
+import com.sheng00.springdemo.repositories.CustomerRepository;
 import com.sheng00.springdemo.repositories.ProductRepository;
 
 @Controller
@@ -24,9 +26,11 @@ import com.sheng00.springdemo.repositories.ProductRepository;
 public class ProductController {
 	
 	private final ProductRepository productRepository;
+	private final CustomerRepository customerRepository;
 	
-	public ProductController(ProductRepository productRepository){
+	public ProductController(ProductRepository productRepository,CustomerRepository customerRepository){
 		this.productRepository = productRepository;
+		this.customerRepository = customerRepository;
 	}
 	
 	@RequestMapping("")
@@ -62,7 +66,9 @@ public class ProductController {
 	@GetMapping("{id}")
 	public String detail(@PathVariable String id,Model model){
 		Product product = productRepository.getOne(id);
+		List<Customer> customers = customerRepository.getByProduct(id); 
 		model.addAttribute("product",product);
+		model.addAttribute("customers",customers);
 		return "product/detail";
 	}
 	

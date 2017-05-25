@@ -182,5 +182,44 @@ public class CustomerRepository {
 		}
 	}
 	
+	public List<Customer> getByProduct(String pid) {
+		List<Customer> customers = new ArrayList<Customer>();
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			Class.forName(className);
+			conn = DriverManager.getConnection(url, user, password);
+			stmt = (Statement) conn.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from Customer "
+					+ "where id in "
+					+ "(select cid from CustomerProduct "
+					+ "where pid = '" + pid + "')");
+			while (rs.next()) {
+				UUID id = UUID.fromString(rs.getString("id"));
+				String name = rs.getString("name");
+				Customer customer = new Customer(id, name);
+				customers.add(customer);
+			}
+			conn.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if (stmt != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}
+		}
+		return customers;
+	}
+	
 
 }

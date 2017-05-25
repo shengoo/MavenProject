@@ -44,7 +44,7 @@ public class ProductRepository {
 	
 
 	public List<Product> getByCustomer(String cid) {
-		List<Product> customers = new ArrayList<Product>();
+		List<Product> products = new ArrayList<Product>();
 		Connection conn = null;
 		Statement stmt = null;
 		try {
@@ -58,8 +58,8 @@ public class ProductRepository {
 			while (rs.next()) {
 				UUID id = UUID.fromString(rs.getString("id"));
 				String name = rs.getString("name");
-				Product customer = new Product(id, name);
-				customers.add(customer);
+				Product product = new Product(id, name);
+				products.add(product);
 			}
 			conn.close();
 		} catch (Exception e) {
@@ -79,7 +79,7 @@ public class ProductRepository {
 				se.printStackTrace();
 			}
 		}
-		return customers;
+		return products;
 	}
 
 	public void addOne(Product customer) {
