@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sheng00.springdemo.mappers.CustomerMapper;
 import com.sheng00.springdemo.models.Customer;
-import com.sheng00.springdemo.models.CustomerMapper;
 import com.sheng00.springdemo.models.Product;
 import com.sheng00.springdemo.repositories.CustomerRepository;
 import com.sheng00.springdemo.repositories.ProductRepository;
@@ -60,8 +60,10 @@ public class CustomerController {
             return "customer/add";
         }
 		try {
-			customerRepository.addOne(customer);
+//			customerRepository.addOne(customer);
+			customerMapper.addOne(customer);
 		} catch (Exception e) {
+			e.printStackTrace();
 			// TODO: handle exception
 			bindingResult.reject(e.getMessage());
             return "customer/add";
