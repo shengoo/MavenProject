@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sheng00.springdemo.models.Customer;
+import com.sheng00.springdemo.models.CustomerMapper;
 import com.sheng00.springdemo.models.Product;
 import com.sheng00.springdemo.repositories.CustomerRepository;
 import com.sheng00.springdemo.repositories.ProductRepository;
@@ -29,6 +31,8 @@ public class CustomerController {
 	
 	private final CustomerRepository customerRepository;
 	private final ProductRepository productRepository;
+	@Autowired
+	private CustomerMapper customerMapper;
 	
 	public CustomerController(CustomerRepository customerRepository,ProductRepository productRepository){
 		this.customerRepository = customerRepository;
@@ -37,6 +41,8 @@ public class CustomerController {
 	
 	@RequestMapping("")
 	public String index(Model model){
+		Customer customer = this.customerMapper.getCustomer("8de38c3e-f471-40f8-9e38-09862cea3c67");
+		System.out.println(customer.getName());
 		List<Customer> customers = customerRepository.getAll();
 		model.addAttribute("customers", customers);
 		return "customer/index";
