@@ -41,8 +41,6 @@ public class CustomerController {
 	
 	@RequestMapping("")
 	public String index(Model model){
-		Customer customer = this.customerMapper.getCustomer("8de38c3e-f471-40f8-9e38-09862cea3c67");
-		System.out.println(customer.getName());
 		List<Customer> customers = customerRepository.getAll();
 		model.addAttribute("customers", customers);
 		return "customer/index";
