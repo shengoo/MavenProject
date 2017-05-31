@@ -1,4 +1,4 @@
-package com.sheng00.springdemo.storage;
+package com.tr.springdemo.storage;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;

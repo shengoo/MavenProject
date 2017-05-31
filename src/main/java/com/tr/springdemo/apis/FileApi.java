@@ -1,4 +1,4 @@
-package com.sheng00.springdemo.apis;
+package com.tr.springdemo.apis;
 
 import java.util.stream.Collectors;
 
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sheng00.springdemo.storage.StorageService;
+import com.tr.springdemo.storage.StorageService;
 
 @RestController
 @RequestMapping("api/files")

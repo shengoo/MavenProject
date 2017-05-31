@@ -1,4 +1,4 @@
-package com.sheng00.springdemo.apis;
+package com.tr.springdemo.apis;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sheng00.springdemo.models.Product;
-import com.sheng00.springdemo.repositories.ProductRepository;
+import com.tr.springdemo.models.Product;
+import com.tr.springdemo.repositories.ProductRepository;
 
 @RestController
 @RequestMapping("api/products")

@@ -1,4 +1,4 @@
-package com.sheng00.springdemo.controllers;
+package com.tr.springdemo.controllers;
 
 import java.util.List;
 
@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sheng00.springdemo.mappers.CustomerMapper;
-import com.sheng00.springdemo.models.Customer;
-import com.sheng00.springdemo.models.Product;
-import com.sheng00.springdemo.repositories.CustomerRepository;
-import com.sheng00.springdemo.repositories.ProductRepository;
+import com.tr.springdemo.mappers.CustomerMapper;
+import com.tr.springdemo.models.Customer;
+import com.tr.springdemo.models.Product;
+import com.tr.springdemo.repositories.CustomerRepository;
+import com.tr.springdemo.repositories.ProductRepository;
 
 
 @Controller

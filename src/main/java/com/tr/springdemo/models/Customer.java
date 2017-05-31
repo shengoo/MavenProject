@@ -1,4 +1,4 @@
-package com.sheng00.springdemo.models;
+package com.tr.springdemo.models;
 
 import java.util.UUID;
 

@@ -1,10 +1,10 @@
-package com.sheng00.springdemo.mappers;
+package com.tr.springdemo.mappers;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.sheng00.springdemo.models.Customer;
+import com.tr.springdemo.models.Customer;
 
 
 

@@ -12,7 +12,7 @@
 	</bean>
 
 	<bean id="customerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-	  <property name="mapperInterface" value="com.sheng00.springdemo.mappers.CustomerMapper" />
+	  <property name="mapperInterface" value="com.tr.springdemo.mappers.CustomerMapper" />
 	  <property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 	

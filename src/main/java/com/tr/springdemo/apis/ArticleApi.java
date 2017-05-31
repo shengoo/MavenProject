@@ -1,4 +1,4 @@
-package com.sheng00.springdemo.apis;
+package com.tr.springdemo.apis;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

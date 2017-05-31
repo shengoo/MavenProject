@@ -1,4 +1,4 @@
-package com.sheng00.springdemo.repositories;
+package com.tr.springdemo.repositories;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.sheng00.springdemo.models.Customer;
+import com.tr.springdemo.models.Customer;
 
 @Service
 public class CustomerRepository {

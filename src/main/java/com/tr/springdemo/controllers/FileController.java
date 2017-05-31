@@ -1,4 +1,4 @@
-package com.sheng00.springdemo.controllers;
+package com.tr.springdemo.controllers;
 
 import java.util.stream.Collectors;
 
@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sheng00.springdemo.storage.StorageService;
+import com.tr.springdemo.storage.StorageService;
 
 @Controller
 @RequestMapping("file")

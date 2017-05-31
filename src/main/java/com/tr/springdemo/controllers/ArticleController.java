@@ -1,4 +1,4 @@
-package com.sheng00.springdemo.controllers;
+package com.tr.springdemo.controllers;
 
 import javax.validation.Valid;
 
@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sheng00.springdemo.models.Article;
-//import com.sheng00.springdemo.repositories.ArticleRepository;
-import com.sheng00.springdemo.storage.StorageService;
+import com.tr.springdemo.models.Article;
+import com.tr.springdemo.storage.StorageService;
 
 @Controller
 @RequestMapping("article")
