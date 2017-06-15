@@ -9,7 +9,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("beans.xml")
+@ImportResource("classpath:beans.xml")
 public class Application extends SpringBootServletInitializer {
 	
 	private static final Logger log = LoggerFactory.getLogger(Application.class);

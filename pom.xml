@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tr</groupId>
 	<artifactId>MavenProject</artifactId>
-	<version>1</version>
+	<version>1.1</version>
 	<packaging>war</packaging>
 
 	<parent>
@@ -11,6 +11,24 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.3.RELEASE</version>
 	</parent>
+
+	<repositories>
+		<repository>
+			<id>maven33 Releases</id>
+			<name>GGO repository Releases</name>
+			<url>http://10.35.63.33:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<id>maven33 Snapshot</id>
+			<name>GGO repository Snapshot</name>
+			<url>http://10.35.63.33:8081/nexus/content/repositories/snapshots</url>
+		</repository>
+		<repository>
+			<id>maven33 thirdparty</id>
+			<name>GGO repository thirdparty</name>
+			<url>http://10.35.63.33:8081/nexus/content/repositories/thirdparty</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<finalName>springdemo</finalName>
@@ -28,7 +46,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>1.5.3.RELEASE</version>
+				<version>${spring.boot.version}</version>
 			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
@@ -36,8 +54,13 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat-maven-plugin</artifactId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
+				<configuration>
+					<url>http://10.35.63.233:8080/manager/text</url>
+					<server>TomcatServer</server>
+					<path>/sss</path>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -51,28 +74,28 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-			<version>1.5.3.RELEASE</version>
+			<version>${spring.boot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<version>1.5.3.RELEASE</version>
+			<version>${spring.boot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-maven-plugin</artifactId>
-			<version>1.5.3.RELEASE</version>
+			<version>${spring.boot.version}</version>
 			<type>maven-plugin</type>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>1.5.3.RELEASE</version>
+			<version>${spring.boot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<version>1.5.3.RELEASE</version>
+			<version>${spring.boot.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -91,25 +114,11 @@
 			<version>3.6.1</version>
 			<type>maven-plugin</type>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.boot</groupId> -->
-<!-- 			<artifactId>spring-boot-starter-data-jpa</artifactId> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.oracle</groupId> -->
-<!-- 			<artifactId>ojdbc14</artifactId> -->
-<!-- 			<version>10.2.0.4.0</version> -->
-<!-- 		</dependency> -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<version>6.1.7.jre8-preview</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.thymeleaf</groupId> -->
-<!-- 			<artifactId>thymeleaf</artifactId> -->
-<!-- 			<version>3.0.6.RELEASE</version> -->
-<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
@@ -124,14 +133,8 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-orm</artifactId> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.commons</groupId> -->
-<!-- 			<artifactId>commons-dbcp2</artifactId> -->
-<!-- 			<version>2.1</version> -->
-<!-- 		</dependency> -->
 	</dependencies>
+	<properties>
+		<spring.boot.version>1.5.3.RELEASE</spring.boot.version>
+	</properties>
 </project>
