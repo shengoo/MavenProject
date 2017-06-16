@@ -51,6 +51,13 @@
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.1.0</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>${project.build.directory}/min</directory>
+						</resource>
+					</webResources>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
@@ -60,6 +67,33 @@
 					<url>http://10.35.63.233:8080/manager/text</url>
 					<server>TomcatServer</server>
 					<path>/sss</path>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<version>1.5.1</version>
+				<executions>
+					<execution>
+						<id>compress_js_css</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>compress</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<preProcessAggregates>false</preProcessAggregates>
+					<excludes>
+						<exclude>**/*-min.js</exclude>
+						<exclude>**/*.min.js</exclude>
+						<exclude>**/*-min.css</exclude>
+						<exclude>**/*.min.css</exclude>
+					</excludes>
+					<jswarn>false</jswarn>
+					<nosuffix>true</nosuffix>
+					<failOnWarning>false</failOnWarning>
+					<webappDirectory>${project.build.directory}/min</webappDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
