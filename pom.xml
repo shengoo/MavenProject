@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tr</groupId>
 	<artifactId>MavenProject</artifactId>
-	<version>1.1</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<parent>
@@ -29,6 +29,18 @@
 			<url>http://10.35.63.33:8081/nexus/content/repositories/thirdparty</url>
 		</repository>
 	</repositories>
+	
+	
+	<distributionManagement>
+		<repository>
+			<id>nexus</id>
+			<url>http://10.35.63.33:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus</id>
+			<url>http://10.35.63.33:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<finalName>springdemo</finalName>
