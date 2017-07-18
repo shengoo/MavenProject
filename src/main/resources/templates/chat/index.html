@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+</head>
+<body>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	  if (!Notification) {
+	    alert('Desktop notifications not available in your browser. Try Chromium.'); 
+	    return;
+	  }
+
+	  if (Notification.permission !== "granted")
+	    Notification.requestPermission();
+	});
+
+	function notifyMe() {
+	  if (Notification.permission !== "granted")
+	    Notification.requestPermission();
+	  else {
+	    var notification = new Notification('Notification title', {
+	      icon: '/chat/chat.jpg',
+	      body: "Hey there! You've been notified!",
+	    });
+
+	    notification.onclick = function () {
+	      window.open("http://stackoverflow.com/a/13328397/1269037");      
+	    };
+
+	  }
+
+	}
+	notifyMe();
+	</script>
+</body>
+</html>
