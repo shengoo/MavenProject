@@ -1,4 +1,5 @@
 package com.tr.springdemo.websockets;
+import com.tr.springdemo.chat.ChatUser;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -48,6 +49,22 @@ public class MyWebSocketHandler implements WebSocketHandler {
         logger.debug("connect to the websocket success......");
         users.add(session);
         session.sendMessage(new TextMessage("Welcome, " + session.getAttributes().get(Constants.WEBSOCKET_USERNAME)));
+//        session.sendMessage(new WebSocketMessage<ChatUser>() {
+//            @Override
+//            public ChatUser getPayload() {
+//                return new ChatUser();
+//            }
+//
+//            @Override
+//            public int getPayloadLength() {
+//                return 10;
+//            }
+//
+//            @Override
+//            public boolean isLast() {
+//                return true;
+//            }
+//        });
 //        String userName = (String) session.getAttributes().get(Constants.WEBSOCKET_USERNAME);
 //        if(userName!= null){
 //            //查询未读消息
@@ -60,7 +77,7 @@ public class MyWebSocketHandler implements WebSocketHandler {
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
         logger.debug("handleMessage");
-        
+        System.out.println(message);
         sendMessageToUsers(new TextMessage("Hi"));
     }
 

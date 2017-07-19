@@ -7,10 +7,44 @@
 </head>
 <body>
 <div id="chat">
-	<div>
+	<div id="user-list" class="content-block">
+		<header class="level1">
+			<h6>Header Level 1</h6>
+		</header>
+		<div class="content">
+			Some content goes here
+		</div>
 	</div>
-	<div id="">
+	<div id="messages" class="content-block">
+		<header class="level1">
+			<h6>Header Level 1</h6>
+		</header>
+		<div class="content">
+			<div id="message-container">
+
+			</div>
+			<div id="mseeage-form">
+				<input type="text" />
+			</div>
+		</div>
 	</div>
 </div>
+<div id="login">
+	<div class="content-block">
+		<header class="level1">
+			<h6>Header Level 1</h6>
+		</header>
+		<div class="content">
+			<div class="form-group">
+				<input type="text" class="form-control" id="nameInput" placeholder="Type your name to start" />
+			</div>
+			<button type="button" id="start" class="btn btn-default" disabled="disabled">Start</button>
+		</div>
+	</div>
+</div>
+
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/chat/chat.js}"></script>
 </body>
 </html>

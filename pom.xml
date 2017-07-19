@@ -214,6 +214,10 @@
             <artifactId>jquery</artifactId>
             <version>3.1.0</version>
         </dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
 	</dependencies>
 	<properties>
 		<spring.boot.version>1.5.3.RELEASE</spring.boot.version>
