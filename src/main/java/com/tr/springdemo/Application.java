@@ -25,31 +25,8 @@ public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
         log.info("run");
-        (new Thread(new Runner())).start();
     }
     
 
 }
 
-
-class Runner implements Runnable{
-	
-	private int count = 0;
-	private MyWebSocketHandler handler = MyWebSocketHandler.getInstance();
-	
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		while(true){
-			handler.sendMessageToUsers(new TextMessage("Server started : " + count++));
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	
-}

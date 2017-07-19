@@ -1,6 +1,6 @@
 
 $(function(){
-	var socket = new WebSocket('ws://localhost:8080/webSocketServer');
+	var socket = new WebSocket('ws://' + location.host + '/webSocketServer');
 	socket.addEventListener('open', function (event) {
 		$('#status').text('connected');
 		console.log('opened');

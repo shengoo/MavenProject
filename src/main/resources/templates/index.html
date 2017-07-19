@@ -3,10 +3,8 @@
 <head>
 <title>Spring Demo</title>
 <meta th:replace="fragments/css :: head"></meta>
-<script src="/webjars/jquery/jquery.min.js"></script>
-<script src="/webjars/sockjs-client/sockjs.min.js"></script>
-<script src="/webjars/stomp-websocket/stomp.min.js"></script>
-<script src="/app.js"></script>
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/app.js}"></script>
 </head>
 <body>
 	<div class="app-container">

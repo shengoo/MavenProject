@@ -27,6 +27,7 @@ public class MyWebSocketHandler implements WebSocketHandler {
     static {
         users = new ArrayList<>();
         logger = LoggerFactory.getLogger(MyWebSocketHandler.class);
+        (new Thread(new Runner())).start();
     }
     
     private MyWebSocketHandler() {
@@ -123,4 +124,26 @@ public class MyWebSocketHandler implements WebSocketHandler {
         }
     }
     
+}
+
+class Runner implements Runnable{
+	
+	private int count = 0;
+	private MyWebSocketHandler handler = MyWebSocketHandler.getInstance();
+	
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while(true){
+			handler.sendMessageToUsers(new TextMessage("Server started : " + count++));
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 }
