@@ -18,6 +18,8 @@ import org.springframework.web.socket.TextMessage;
 
 public class MyWebSocketHandler implements WebSocketHandler {
 	private static final Logger logger;
+	private int count = 0;
+	
 
 
     private static final ArrayList<WebSocketSession> users;
@@ -26,10 +28,20 @@ public class MyWebSocketHandler implements WebSocketHandler {
         users = new ArrayList<>();
         logger = LoggerFactory.getLogger(MyWebSocketHandler.class);
     }
-
-//    @Autowired
-//    private WebSocketService webSocketService;
-
+    
+    private MyWebSocketHandler() {
+		
+	}
+    
+    private static MyWebSocketHandler instance = null;
+    public static MyWebSocketHandler getInstance(){
+    	if(instance == null){
+    		instance = new MyWebSocketHandler();
+    	}
+    	return instance;
+    }
+    
+    
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         logger.debug("connect to the websocket success......");
@@ -48,7 +60,7 @@ public class MyWebSocketHandler implements WebSocketHandler {
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
         logger.debug("handleMessage");
         
-//        sendMessageToUsers('Welcome');
+        sendMessageToUsers(new TextMessage("Hi"));
     }
 
     @Override
@@ -110,4 +122,5 @@ public class MyWebSocketHandler implements WebSocketHandler {
             }
         }
     }
+    
 }

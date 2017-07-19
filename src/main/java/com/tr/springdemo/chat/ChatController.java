@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ChatController {
 	@RequestMapping("")
 	public String index(Model model){
+		String a = "a";
+		a+="b";
 		return "chat/index";
 	}
 }

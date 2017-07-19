@@ -17,12 +17,12 @@ public class WebSocketConfig2 extends WebMvcConfigurerAdapter implements WebSock
     
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry){
-    	registry.addHandler(systemWebSocketHandler(), "/webSocketServer")
+    	registry.addHandler(MyWebSocketHandler.getInstance(), "/webSocketServer")
     	.addInterceptors(new WebSocketHandshakeInterceptor());
     }
     
-    @Bean
-    public WebSocketHandler systemWebSocketHandler(){
-    	return new MyWebSocketHandler();
-    }
+//    @Bean
+//    public WebSocketHandler systemWebSocketHandler(){
+//    	return new MyWebSocketHandler();
+//    }
 }
